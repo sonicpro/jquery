@@ -5,6 +5,5 @@ dist
 *.diff
 *.patch
 test/qunit
-src/sizzle
 /*.html
 .DS_Store

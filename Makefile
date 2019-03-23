@@ -7,7 +7,7 @@ BUILD_DIR = build
 PREFIX = .
 DIST_DIR = ${PREFIX}/dist
 
-JS_ENGINE ?= `which node nodejs`
+JS_ENGINE ?= node
 COMPILER = ${JS_ENGINE} ${BUILD_DIR}/uglify.js --unsafe
 
 BASE_FILES = ${SRC_DIR}/core.js\
@@ -74,7 +74,7 @@ ${QUNIT_DIR}:
 ${SIZZLE_DIR}:
 	$(call clone_or_pull, ${SIZZLE_DIR}, git://github.com/jeresig/sizzle.git)
 
-init: ${QUNIT_DIR} ${SIZZLE_DIR}
+init: ${QUNIT_DIR} #${SIZZLE_DIR}
 
 jquery: init ${JQ}
 jq: init ${JQ}
@@ -111,7 +111,6 @@ ${JQ_MIN}: jquery
 	else \
 		echo "You must have NodeJS installed in order to minify jQuery."; \
 	fi
-	
 
 clean:
 	@@echo "Removing Distribution directory:" ${DIST_DIR}
