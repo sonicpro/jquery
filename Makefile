@@ -7,8 +7,8 @@ BUILD_DIR = build
 PREFIX = .
 DIST_DIR = ${PREFIX}/dist
 
-#JS_ENGINE ?= `which node nodejs`
-#COMPILER = ${JS_ENGINE} ${BUILD_DIR}/uglify.js --unsafe
+JS_ENGINE ?= `which node nodejs`
+COMPILER = ${JS_ENGINE} ${BUILD_DIR}/uglify.js --unsafe
 
 BASE_FILES = ${SRC_DIR}/core.js\
 	${SRC_DIR}/support.js\
@@ -43,7 +43,7 @@ VER = sed "s/@VERSION/${JQ_VER}/"
 
 DATE=$(shell git log -1 --pretty=format:%ad)
 
-#all: jquery min lint \
+all: jquery min lint
 	@@echo "jQuery build complete."
 
 ${DIST_DIR}:
@@ -92,7 +92,7 @@ ${SRC_DIR}/selector.js: ${SIZZLE_DIR}/sizzle.js
 	@@echo "Building selector code from Sizzle"
 	@@sed '/EXPOSE/r src/sizzle-jquery.js' ${SIZZLE_DIR}/sizzle.js | grep -v window.Sizzle > ${SRC_DIR}/selector.js
 
-#lint: jquery \
+lint: jquery
 	@@if test ! -z ${JS_ENGINE}; then \
 		echo "Checking jQuery against JSLint..."; \
 		${JS_ENGINE} build/jslint-check.js; \
@@ -100,9 +100,9 @@ ${SRC_DIR}/selector.js: ${SIZZLE_DIR}/sizzle.js
 		echo "You must have NodeJS installed in order to test jQuery against JSLint."; \
 	fi
 
-#min: ${JQ_MIN}
+min: ${JQ_MIN}
 
-#${JQ_MIN}: jquery \
+${JQ_MIN}: jquery
 	@@if test ! -z ${JS_ENGINE}; then \
 		echo "Minifying jQuery" ${JQ_MIN}; \
 		${COMPILER} ${JQ} > ${JQ_MIN}.tmp; \
@@ -111,7 +111,7 @@ ${SRC_DIR}/selector.js: ${SIZZLE_DIR}/sizzle.js
 	else \
 		echo "You must have NodeJS installed in order to minify jQuery."; \
 	fi
-
+	
 
 clean:
 	@@echo "Removing Distribution directory:" ${DIST_DIR}
@@ -123,5 +123,4 @@ clean:
 	@@echo "Removing cloned directories"
 	@@rm -rf test/qunit src/sizzle
 
-#.PHONY: all jquery lint min init jq clean
-.PHONY: jquery init jq clean
+.PHONY: all jquery lint min init jq clean
