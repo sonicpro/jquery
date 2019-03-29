@@ -116,10 +116,10 @@ clean:
 	@@echo "Removing Distribution directory:" ${DIST_DIR}
 	@@rm -rf ${DIST_DIR}
 
-	@@echo "Removing built copy of Sizzle"
-	@@rm -f src/selector.js
+	# @@echo "Removing built copy of Sizzle"
+	# @@rm -f src/selector.js
 
 	@@echo "Removing cloned directories"
-	@@rm -rf test/qunit src/sizzle
+	@@rm -rf test/qunit #src/sizzle
 
 .PHONY: all jquery lint min init jq clean
