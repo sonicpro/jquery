@@ -503,7 +503,8 @@ jQuery.extend({
 	},
 
 	isEmptyObject: function( obj ) {
-		for ( var name in obj ) {
+        var name;
+		for ( name in obj ) {
 			return false;
 		}
 		return true;

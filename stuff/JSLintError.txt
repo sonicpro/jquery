@@ -1,0 +1,15 @@
+;; This buffer is for notes you don't want to save, and for Lisp evaluation.
+;; If you want to create a file, visit that file with C-x C-f,
+;; then enter the text in that file's own buffer.
+
+"TypeError: Cannot set property 'first' of undefined
+    at varstatement (D:\Sources JavaScript\jquery\build\lib\jslint.js:4527:20)
+    at Object.fud (D:\Sources JavaScript\jquery\build\lib\jslint.js:4863:17)
+    at parse (D:\Sources JavaScript\jquery\build\lib\jslint.js:2019:26)
+    at statement (D:\Sources JavaScript\jquery\build\lib\jslint.js:2461:13)
+    at statements (D:\Sources JavaScript\jquery\build\lib\jslint.js:2570:24)
+    at block (D:\Sources JavaScript\jquery\build\lib\jslint.js:2593:21)
+    at doFunction (D:\Sources JavaScript\jquery\build\lib\jslint.js:4607:9)
+    at Object.nud (D:\Sources JavaScript\jquery\build\lib\jslint.js:4638:9)
+    at parse (D:\Sources JavaScript\jquery\build\lib\jslint.js:2022:30)
+    at Object.x.nud (D:\Sources JavaScript\jquery\build\lib\jslint.js:4492:17)"
