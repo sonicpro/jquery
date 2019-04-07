@@ -11,22 +11,24 @@ JS_ENGINE ?= node
 COMPILER = ${JS_ENGINE} ${BUILD_DIR}/uglify.js --unsafe
 
 BASE_FILES = ${SRC_DIR}/core.js\
-	${SRC_DIR}/support.js\
-	${SRC_DIR}/data.js\
-	${SRC_DIR}/queue.js\
-	${SRC_DIR}/attributes.js\
-	${SRC_DIR}/event.js\
 	${SRC_DIR}/selector.js\
-	${SRC_DIR}/traversing.js\
-	${SRC_DIR}/manipulation.js\
-	${SRC_DIR}/css.js\
-	${SRC_DIR}/ajax.js\
-	${SRC_DIR}/ajax/jsonp.js\
-	${SRC_DIR}/ajax/script.js\
-	${SRC_DIR}/ajax/xhr.js\
-	${SRC_DIR}/effects.js\
-	${SRC_DIR}/offset.js\
-	${SRC_DIR}/dimensions.js
+	${SRC_DIR}/traversing.js
+	#${SRC_DIR}/support.js\
+	#${SRC_DIR}/data.js\
+	#${SRC_DIR}/queue.js\
+	#${SRC_DIR}/attributes.js\
+	#${SRC_DIR}/event.js\
+	#${SRC_DIR}/selector.js\
+	#${SRC_DIR}/traversing.js\
+	#${SRC_DIR}/manipulation.js\
+	#${SRC_DIR}/css.js\
+	#${SRC_DIR}/ajax.js\
+	#${SRC_DIR}/ajax/jsonp.js\
+	#${SRC_DIR}/ajax/script.js\
+	#${SRC_DIR}/ajax/xhr.js\
+	#${SRC_DIR}/effects.js\
+	#${SRC_DIR}/offset.js\
+	#${SRC_DIR}/dimensions.js
 
 MODULES = ${SRC_DIR}/intro.js\
 	${BASE_FILES}\
