@@ -1,6 +1,6 @@
 module.exports = function( grunt ) {
 	"use strict";
-
+	grunt.loadNpmTasks('grunt-force-task');
 	function readOptionalJSON( filepath ) {
 		var stripJSONComments = require( "strip-json-comments" ),
 			data = {};
@@ -298,7 +298,7 @@ module.exports = function( grunt ) {
 		// would run the dist target first which would point to errors in the built
 		// file, making it harder to fix them. We want to check the built file only
 		// if we already know the source files pass the linter.
-		"eslint:dev",
+		"eslint:dev --force",
 		"eslint:dist"
 	] );
 
@@ -329,7 +329,7 @@ module.exports = function( grunt ) {
 	] );
 
 	grunt.registerTask( "default", [
-		"eslint:dev",
+		"force:eslint:dev",
 		"build:*:*",
 		"uglify",
 		"remove_map_comment",
