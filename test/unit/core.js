@@ -1,6 +1,6 @@
 QUnit.module( "core", {
 	beforeEach: function() {
-		this.sandbox = sinon.sandbox.create();
+		this.sandbox = sinon.createSandbox();
 	},
 	afterEach: function() {
 		this.sandbox.restore();
@@ -1062,6 +1062,13 @@ QUnit.test( "jQuery.extend(true,{},{a:[], o:{}}); deep copy with array, followed
 	assert.ok( !Array.isArray( result.object ), "result.object wasn't paved with an empty array" );
 } );
 
+QUnit.test( "jQuery.extend( true, ... ) Object.prototype pollution", function( assert ) {
+	assert.expect( 1 );
+
+	jQuery.extend( true, {}, JSON.parse( "{\"__proto__\": {\"devMode\": true}}" ) );
+	assert.ok( !( "devMode" in {} ), "Object.prototype not polluted" );
+} );
+
 QUnit.test( "jQuery.each(Object,Function)", function( assert ) {
 	assert.expect( 23 );
 
@@ -1425,12 +1432,23 @@ QUnit.test( "Iterability of jQuery objects (gh-1693)", function( assert ) {
 	}
 } );
 
+testIframe(
+	"Iterability of jQuery objects with Symbol polyfill (gh-1693)",
+	"core/jquery-iterability-transpiled.html",
+	function( assert, jQuery, window, document, testString ) {
+		assert.expect( 1 );
+
+		assert.strictEqual( testString, "DIVSPANA",
+			"for-of works on jQuery objects with Symbol polyfilled" );
+	}
+);
+
 QUnit[ jQuery.Deferred ? "test" : "skip" ]( "jQuery.readyException (original)", function( assert ) {
 	assert.expect( 1 );
 
 	var message;
 
-	this.sandbox.stub( window, "setTimeout", function( fn ) {
+	this.sandbox.stub( window, "setTimeout" ).callsFake( function( fn ) {
 		try {
 			fn();
 		} catch ( error ) {
@@ -1453,7 +1471,7 @@ QUnit[ jQuery.Deferred ? "test" : "skip" ]( "jQuery.readyException (custom)", fu
 
 	var done = assert.async();
 
-	this.sandbox.stub( jQuery, "readyException", function( error ) {
+	this.sandbox.stub( jQuery, "readyException" ).callsFake( function( error ) {
 		assert.strictEqual(
 			error.message,
 			"Error in jQuery ready",
